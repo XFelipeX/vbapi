@@ -25,6 +25,13 @@ Public Class ClienteService
                 Throw New ArgumentException("E-mail inválido")
             End If
 
+            For Each endereco In cliente.Enderecos
+                If Not Validator.ValidarCep(endereco.CEP) Then
+                    Throw New ArgumentException("CEP inválido")
+                End If
+            Next
+
+
             _clienteRepository.Adicionar(cliente)
 
         Catch ex As ArgumentException
@@ -43,6 +50,11 @@ Public Class ClienteService
         If Not Validator.ValidarCPF(cliente.CPF) Then Throw New ArgumentException("CPF inválido")
         If Not Validator.ValidarRG(cliente.RG) Then Throw New ArgumentException("RG inválido")
         If Not Validator.ValidarEmail(cliente.Email) Then Throw New ArgumentException("E-mail inválido")
+        For Each endereco In cliente.Enderecos
+            If Not Validator.ValidarCep(endereco.CEP) Then
+                Throw New ArgumentException("CEP inválido")
+            End If
+        Next
 
         _clienteRepository.Atualizar(cliente)
     End Sub

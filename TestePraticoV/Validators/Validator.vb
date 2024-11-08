@@ -15,4 +15,9 @@ Public Class Validator
         Dim regex As New Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
         Return regex.IsMatch(email)
     End Function
+
+    Public Shared Function ValidarCep(cep As String) As Boolean
+        Dim regex As New Regex("^\d{5}-\d{3}$")
+        Return regex.IsMatch(cep)
+    End Function
 End Class
